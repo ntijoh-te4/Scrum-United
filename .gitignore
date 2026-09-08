@@ -16,6 +16,9 @@
 # Ignore .elixir_ls folder
 /.elixir_ls/
 
+# Ignore the config folder
+/config/
+
 # If the VM crashes, it generates a dump, let's ignore it too.
 erl_crash.dump
 

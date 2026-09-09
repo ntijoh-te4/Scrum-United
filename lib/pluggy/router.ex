@@ -4,6 +4,7 @@ defmodule Pluggy.Router do
 
   alias Pluggy.FruitController
   alias Pluggy.UserController
+  alias Pluggy.PizzaController
   #alias Pluggy.IndexController
 
   plug(Plug.Static, at: "/", from: :pluggy)
@@ -32,15 +33,15 @@ defmodule Pluggy.Router do
   get("/fruits/:id/edit", do: FruitController.edit(conn, id))
 
   post("/fruits", do: FruitController.create(conn, conn.body_params))
-
   # should be put /fruits/:id, but put/patch/delete are not supported without hidden inputs
   post("/fruits/:id/edit", do: FruitController.update(conn, id, conn.body_params))
-
   # should be delete /fruits/:id, but put/patch/delete are not supported without hidden inputs
   post("/fruits/:id/destroy", do: FruitController.destroy(conn, id))
 
   post("/users/login", do: UserController.login(conn, conn.body_params))
   post("/users/logout", do: UserController.logout(conn))
+
+  get("/pizzas", do: PizzaController.index(conn))
 
   match _ do
     send_resp(conn, 404, "oops")

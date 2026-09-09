@@ -1,0 +1,17 @@
+<div>
+    <img src="/images/tonys-pizza-logo.svg" id="logo_img">
+
+    <a><img src="/images/tonys-pizza-basket.svg" id="basket_img"></a>
+</div>
+<div>
+    <%= for slice <- pizza do %>
+        <div>
+            <img src="/images/<% slice.img %>>" class="pizza_img_id">
+            <ul>
+            <% # en for loop för ingredienser %>
+            <button>Anpassa</button>
+            <button>Köp</button>
+            </ul>
+        </div>
+    <% end %>
+</div>

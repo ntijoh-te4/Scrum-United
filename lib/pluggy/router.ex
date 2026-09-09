@@ -4,7 +4,7 @@ defmodule Pluggy.Router do
 
   alias Pluggy.FruitController
   alias Pluggy.UserController
-  alias Pluggy.IndexController
+  #alias Pluggy.IndexController
 
   plug(Plug.Static, at: "/", from: :pluggy)
   plug(:put_secret_key_base)

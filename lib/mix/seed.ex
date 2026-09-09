@@ -19,6 +19,7 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "DROP TABLE IF EXISTS orders", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS pizza_rel CASCADE", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS temp_rel CASCADE", [])
+    Postgrex.query!(DB, "DROP TABLE IF EXISTS users", [])
   end
 
   defp create_tables() do
@@ -48,14 +49,20 @@ defmodule Mix.Tasks.Seed do
       []
     )
 
-        Postgrex.query!(
+    Postgrex.query!(
       DB,
       "CREATE TABLE pizza_rel (pizza_id INTEGER REFERENCES pizza(id), topp_id INTEGER REFERENCES toppings(id))",
       []
     )
-        Postgrex.query!(
+    Postgrex.query!(
       DB,
       "CREATE TABLE temp_rel (id SERIAL PRIMARY KEY)",
+      []
+    )
+
+    Postgrex.query!(
+      DB,
+      "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(255) NOT NULL UNIQUE, password_hash VARCHAR(60) NOT NULL)",
       []
     )
 
@@ -133,6 +140,9 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "INSERT INTO pizza_rel VALUES(8, 14)", [])
     Postgrex.query!(DB, "INSERT INTO pizza_rel VALUES(8, 11)", [])
     Postgrex.query!(DB, "INSERT INTO pizza_rel VALUES(8, 15)", [])
+
+    #user
+    Postgrex.query!(DB, "INSERT INTO users(username, password_hash) VALUES($1, $2)", ["a", Bcrypt.hash_pwd_salt("a")])
 
   end
 end

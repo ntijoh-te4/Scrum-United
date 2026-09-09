@@ -10,7 +10,7 @@ defmodule Pluggy.Supervisor do
     # order matters: the database connection must exist before the web server accepts requests
     children = [
       {Postgrex, Keyword.put(Application.get_env(:pluggy, :db), :name, DB)},
-      {Bandit, plug: Pluggy.Router, scheme: :http, port: 3000}
+      {Bandit, plug: Pluggy.Router, scheme: :http, port: 9292}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Seed do
     IO.puts("Dropping tables")
     Postgrex.query!(DB, "DROP TABLE IF EXISTS users", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS fruits", [])
-    Postgrex.query!(DB, "DROP TABLE IF EXISTS pizza CASCADE", [])
+    Postgrex.query!(DB, "DROP TABLE IF EXISTS pizzas CASCADE", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS toppings CASCADE", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS groups", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS orders", [])
@@ -26,7 +26,7 @@ defmodule Mix.Tasks.Seed do
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE pizza (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, img TEXT NOT NULL)",
+      "CREATE TABLE pizzas (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, img TEXT NOT NULL)",
       []
     )
 
@@ -65,14 +65,14 @@ defmodule Mix.Tasks.Seed do
     IO.puts("Seeding data")
 
     #pizzas
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Margherita", "margherita.svg"])
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Marinara", "marinara.svg"])
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Prosciutto e funghi", "prosciutto-e-funghi.svg"])
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Quattro stagioni", "quattro-stagioni.svg"])
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Capricciosa", "capricciosa.svg"])
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Quattro formaggi", "quattro-formaggi.svg"])
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Ortolana", "ortolana.svg"])
-    Postgrex.query!(DB, "INSERT INTO pizza(name, img) VALUES($1, $2)", ["Diavola", "diavola.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Margherita", "margherita.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Marinara", "marinara.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Prosciutto e funghi", "prosciutto-e-funghi.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Quattro stagioni", "quattro-stagioni.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Capricciosa", "capricciosa.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Quattro formaggi", "quattro-formaggi.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Ortolana", "ortolana.svg"])
+    Postgrex.query!(DB, "INSERT INTO pizzas(name, img) VALUES($1, $2)", ["Diavola", "diavola.svg"])
 
     #toppings
     Postgrex.query!(DB, "INSERT INTO toppings(name) VALUES($1)", ["Tomatsås"]) #1

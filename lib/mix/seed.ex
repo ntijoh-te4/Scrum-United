@@ -20,6 +20,7 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "DROP TABLE IF EXISTS pizza_rel CASCADE", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS temp_rel CASCADE", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS users", [])
+    Postgrex.query!(DB, "DROP TABLE IF EXISTS sessions", [])
   end
 
   defp create_tables() do
@@ -63,6 +64,12 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(
       DB,
       "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(255) NOT NULL UNIQUE, password_hash VARCHAR(60) NOT NULL)",
+      []
+    )
+
+    Postgrex.query!(
+      DB,
+      "CREATE TABLE sessions (id SERIAL PRIMARY KEY, session TEXT NOT NULL)",
       []
     )
 

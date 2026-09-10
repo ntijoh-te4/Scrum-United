@@ -1,21 +1,26 @@
-<div id="topbar">
+<header id="topbar">
     <img src="/uploads/tonys-pizza-logo.svg" id="logo_img">
 
     <a><img src="/uploads/tonys-pizza-basket.svg" id="basket_img"></a>
-</div>
-<div>
+</header>
+<main>
     <%= for pizza <- pizzas do %>
-        <%= pizza.name %>
-        <div>
-            <img src="/uploads/<%= pizza.img %>" class="pizza_img">
-            <ul>
-            <li></li>
-
-            <form action="/pizzas/<%= pizza.id %>/customize" method="get">
-                <button type="submit">Anpassa</button>
-            </form>
-            <button>Köp</button>
-            </ul>
+        <div class="pizza">
+            <div class="pizzaImage">
+                <img src="/uploads/<%= pizza.img %>" class="pizza_img">
+            </div>
+            <div class="pizzaInfo">
+                <h3><%= pizza.name %></h3>
+                <div class="ingContainer">
+                    #insert list of toppings
+                </div>
+                <div class="buttonContainer">
+                    <form action="/pizzas/<%= pizza.id %>/customize" method="get">
+                        <button class="anpassa">Anpassa</button>
+                    </form>
+                    <button class="köp">Köp</button>
+                </div>
+            </div>
         </div>
     <% end %>
-</div>
+</main>

@@ -1,12 +1,19 @@
 defmodule Pluggy.OrderController do
-  def new(_username, _name, ingredients) do
-    ## Temp key
-    ## Get ingredients
-    #id = Postgrex.query!(DB, "INSERT INTO groups DEFAULT VALUES RETURNING id", []).rows
-    ## Create order
-    #order_id = Postgrex.query!(DB, "INSERT INTO orders VALUES ($1, $2) RETURNING id", [username, name, id, "N/A"]).rows
-    ## Add ingredients to
-    ingredients = ingredients |> Enum.map(&String.to_integer/1)
-    IO.inspect(ingredients)
+  alias Pluggy.Order
+  def new(username, name, ingredients) do
+    name = name |> List.flatten() |> hd()
+
+    Postgrex.query!(DB, "INSERT INTO orders (name, order_name, group_id, date) VALUES ($1, $2, $3, $4)",
+    [username, name, 1, "today"])
+
+    id = Postgrex.query!(DB, "SELECT id FROM orders WHERE name = $1 LIMIT 1", [username]).rows
+    |> List.flatten()
+    |> hd()
+
+    ingredients |> Enum.map(&String.to_integer/1)
+    |> Enum.map(&Order.add_ingredient(id, &1))
+
+
+    IO.inspect(id)
   end
 end

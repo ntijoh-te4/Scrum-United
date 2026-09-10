@@ -45,18 +45,18 @@ defmodule Mix.Tasks.Seed do
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE orders (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, order_name TEXT NOT NULL, group_id INTEGER NOT NULL, date TEXT NOT NULL)",
+      "CREATE TABLE orders (id SERIAL PRIMARY KEY, name TEXT NOT NULL, order_name TEXT NOT NULL, group_id INTEGER NOT NULL, date TEXT NOT NULL)",
       []
     )
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE pizza_rel (pizza_id INTEGER REFERENCES pizza(id), topp_id INTEGER REFERENCES toppings(id))",
+      "CREATE TABLE pizza_rel (pizza_id INTEGER, topp_id INTEGER REFERENCES toppings(id))",
       []
     )
     Postgrex.query!(
       DB,
-      "CREATE TABLE temp_rel (id SERIAL PRIMARY KEY)",
+      "CREATE TABLE temp_rel (id SERIAL PRIMARY KEY, order_id INTEGER NOT NULL, ingredient_id INTEGER NOT NULL)",
       []
     )
 

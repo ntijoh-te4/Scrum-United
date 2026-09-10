@@ -1,7 +1,14 @@
 defmodule Pluggy.UserController do
-  # import Pluggy.Template, only: [render: 2] #det här exemplet renderar inga templates
+  import Pluggy.Template, only: [render: 2]
   import Plug.Conn, only: [send_resp: 3]
 
+
+  def show(conn) do
+    send_resp(conn, 200, render("pizzas/login", []))
+  end
+
+
+  @spec login(Plug.Conn.t(), nil | maybe_improper_list() | map()) :: Plug.Conn.t()
   def login(conn, params) do
     username = params["username"]
     # missing field -> empty string, so verify_pass gets a binary and simply returns false
@@ -17,7 +24,7 @@ defmodule Pluggy.UserController do
         # run a dummy hash so this branch takes as long as a real check
         # (otherwise response time reveals which usernames exist)
         Bcrypt.no_user_verify()
-        redirect(conn, "/fruits")
+        redirect(conn, "/pizzas/login") #stanna kvar
 
       # user with that username exists
       _ ->
@@ -27,9 +34,9 @@ defmodule Pluggy.UserController do
         if Bcrypt.verify_pass(password, password_hash) do
           Plug.Conn.put_session(conn, :user_id, id)
           # skicka vidare modifierad conn
-          |> redirect("/fruits")
+          |> redirect("/pizzas/admin") #om korrekt gå vidare till admin
         else
-          redirect(conn, "/fruits")
+          redirect(conn, "/pizzas/login") #annars stanna kvar
         end
     end
   end
@@ -37,7 +44,7 @@ defmodule Pluggy.UserController do
   def logout(conn) do
     # tömmer sessionen
     Plug.Conn.configure_session(conn, drop: true)
-    |> redirect("/fruits")
+    |> redirect("/pizzas")
   end
 
   # def create(conn, params) do

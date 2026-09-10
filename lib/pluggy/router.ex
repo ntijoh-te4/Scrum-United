@@ -6,6 +6,7 @@ defmodule Pluggy.Router do
   alias Pluggy.UserController
   alias Pluggy.PizzaController
   #alias Pluggy.IndexController
+  alias Pluggy.AdminController
 
   plug(Plug.Static, at: "/", from: :pluggy)
   plug(:put_secret_key_base)
@@ -51,6 +52,10 @@ defmodule Pluggy.Router do
   post("/pizzas/:id/edit", do: FruitController.update(conn, id, conn.body_params))
   # should be delete /fruits/:id, but put/patch/delete are not supported without hidden inputs
   post("/pizzas/:id/destroy", do: FruitController.destroy(conn, id))
+
+  get("/pizzas/login", do: UserController.show(conn))
+  get("/pizzas/admin", do: AdminController.show(conn))
+
 
   match _ do
     send_resp(conn, 404, "oops")

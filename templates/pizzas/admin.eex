@@ -1,0 +1,7 @@
+
+<form action="/users/logout" method="post">
+    <button type="submit">Log Out</button>
+</form>
+
+
+# insert code to show orders and to check them off

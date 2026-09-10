@@ -11,7 +11,6 @@ defmodule Mix.Tasks.Seed do
 
   defp drop_tables() do
     IO.puts("Dropping tables")
-    Postgrex.query!(DB, "DROP TABLE IF EXISTS users", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS fruits", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS pizzas CASCADE", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS toppings CASCADE", [])
@@ -51,7 +50,7 @@ defmodule Mix.Tasks.Seed do
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE pizza_rel (pizza_id INTEGER, topp_id INTEGER REFERENCES toppings(id))",
+      "CREATE TABLE pizza_rel (pizza_id INTEGER REFERENCES pizzas(id), topp_id INTEGER REFERENCES toppings(id))",
       []
     )
     Postgrex.query!(
@@ -142,7 +141,7 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "INSERT INTO pizza_rel VALUES(8, 15)", [])
 
     #user
-    Postgrex.query!(DB, "INSERT INTO users(username, password_hash) VALUES($1, $2)", ["a", Bcrypt.hash_pwd_salt("a")])
+    Postgrex.query!(DB, "INSERT INTO users(username, password_hash) VALUES($1, $2)", ["tony", Bcrypt.hash_pwd_salt("pizza")])
 
   end
 end

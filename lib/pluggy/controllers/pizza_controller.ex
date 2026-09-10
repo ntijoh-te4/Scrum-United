@@ -20,7 +20,7 @@ defmodule Pluggy.PizzaController do
   # render använder eex
   def new(conn), do: send_resp(conn, 200, render("pizzas/new", []))
   def show(conn, id), do: send_resp(conn, 200, render("pizzas/show", pizza: Pizza.get(id)))
-  def edit(conn, id), do: send_resp(conn, 200, render("pizzas/edit", pizza: Pizza.get(id)))
+  def customize(conn, id), do: send_resp(conn, 200, render("pizzas/customize", pizza: Pizza.get(id)))
 
   def create(conn, params) do
     Pizza.create(params)

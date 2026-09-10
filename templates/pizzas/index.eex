@@ -11,7 +11,9 @@
             <ul>
             <li></li>
 
-            <button>Anpassa</button>
+            <form action="/pizzas/<%= pizza.id %>/customize" method="get">
+                <button type="submit">Anpassa</button>
+            </form>
             <button>Köp</button>
             </ul>
         </div>

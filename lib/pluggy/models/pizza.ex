@@ -14,6 +14,7 @@ defmodule Pluggy.Pizza do
     |> to_struct
   end
 
+  @spec update(binary(), nil | maybe_improper_list() | map()) :: Postgrex.Result.t()
   def update(id, params) do
     name = params["name"]
     id = String.to_integer(id)
@@ -35,8 +36,8 @@ defmodule Pluggy.Pizza do
     Postgrex.query!(DB, "DELETE FROM pizzas WHERE id = $1", [String.to_integer(id)])
   end
 
-  def to_struct([[id, name]]) do
-    %Pizza{id: id, name: name}
+  def to_struct([[id, name, img]]) do
+    %Pizza{id: id, name: name, img: img}
   end
 
   def to_struct_list(rows) do

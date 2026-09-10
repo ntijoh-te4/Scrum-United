@@ -1,11 +1,12 @@
 defmodule Pluggy.Pizza do
-  defstruct(id: nil, name: "")
+  defstruct(id: nil, name: "", img: "")
 
   alias Pluggy.Pizza
 
   def all do
     Postgrex.query!(DB, "SELECT * FROM pizzas", []).rows
     |> to_struct_list
+
   end
 
   def get(id) do
@@ -39,7 +40,7 @@ defmodule Pluggy.Pizza do
   end
 
   def to_struct_list(rows) do
-    for [id, name] <- rows, do: %Pizza{id: id, name: name}
+    for [id, name, img] <- rows, do: %Pizza{id: id, name: name, img: img}
   end
 
 

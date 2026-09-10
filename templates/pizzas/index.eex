@@ -1,14 +1,16 @@
-<div>
-    <img src="/images/tonys-pizza-logo.svg" id="logo_img">
+<div id="topbar">
+    <img src="/uploads/tonys-pizza-logo.svg" id="logo_img">
 
-    <a><img src="/images/tonys-pizza-basket.svg" id="basket_img"></a>
+    <a><img src="/uploads/tonys-pizza-basket.svg" id="basket_img"></a>
 </div>
 <div>
-    <%= for slice <- pizza do %>
+    <%= for pizza <- pizzas do %>
+        <%= pizza.name %>
         <div>
-            <img src="/images/<% slice.img %>>" class="pizza_img_id">
+            <img src="/uploads/<%= pizza.img %>" class="pizza_img">
             <ul>
-            <% # en for loop för ingredienser %>
+            <li></li>
+
             <button>Anpassa</button>
             <button>Köp</button>
             </ul>

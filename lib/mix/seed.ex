@@ -39,13 +39,13 @@ defmodule Mix.Tasks.Seed do
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE groups (id SERIAL PRIMARY KEY)",
+      "CREATE TABLE groups (id SERIAL PRIMARY KEY, session_owner INTEGER NOT NULL)",
       []
     )
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE orders (id SERIAL PRIMARY KEY, name TEXT NOT NULL, order_name TEXT NOT NULL, group_id INTEGER NOT NULL, date TEXT NOT NULL)",
+      "CREATE TABLE orders (id SERIAL PRIMARY KEY, order_name TEXT NOT NULL, group_id INTEGER NOT NULL, date TEXT NOT NULL, is_ordered VARCHAR(255))",
       []
     )
 

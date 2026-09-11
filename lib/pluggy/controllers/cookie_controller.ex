@@ -18,9 +18,9 @@ defmodule Pluggy.CookieController do
   def smth([], conn) do
     session = retrieve_cookie(conn)
     Postgrex.query!(DB, "INSERT INTO sessions (session) VALUES ($1)", [session])
-    get(conn)
+    {_conn, id} = get(conn)
+    id
   end
-
   def smth([[id]], _conn), do: id
 
   def generate(), do: (for _ <- 1..25, into: "", do: <<Enum.random(~c"0123456789abcdef")>>)

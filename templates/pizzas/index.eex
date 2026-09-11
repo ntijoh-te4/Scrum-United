@@ -14,7 +14,9 @@
             <form action="/pizzas/<%= pizza.id %>/customize" method="get">
                 <button type="submit">Anpassa</button>
             </form>
-            <button>Köp</button>
+            <form action="/cart/add/<%= pizza.id %>" method="POST">
+                <button type="submit">Lägg till i varukorg</button>
+            </form>
             </ul>
         </div>
     <% end %>

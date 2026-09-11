@@ -49,6 +49,7 @@ defmodule Pluggy.Router do
   get("/pizzas/:id/customize", do: PizzaController.customize(conn, id))
 
   get("/cart", do: CartController.show(conn))
+  post("/cart/add/:pizza", do: CartController.new(conn, pizza))
 
   # get("/pizzas/new", do: FruitController.new(conn))
   # get("/pizzas/:id", do: FruitController.show(conn, id))

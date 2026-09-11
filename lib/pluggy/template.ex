@@ -23,6 +23,7 @@ defmodule Pluggy.Template do
     end
   end
 
+
   # Same as EEx.eval_file, but with html_escape/1 imported so templates can write
   # <%= html_escape(fruit.name) %> instead of <%= Plug.HTML.html_escape(fruit.name) %>
   defp eval(path, bindings) do

@@ -3,6 +3,7 @@
 
     <a><img src="/uploads/tonys-pizza-basket.svg" id="basket_img"></a>
 </header>
+<% # inspect(pizzas) %>
 <main>
     <%= for pizza <- pizzas do %>
         <div class="pizza">
@@ -12,7 +13,11 @@
             <div class="pizzaInfo">
                 <h3><%= pizza.name %></h3>
                 <div class="ingContainer">
-                    #insert list of toppings
+                    <ul>
+                    <%= for topping <- pizza.toppings do %>
+                        <li><%= topping %></li>
+                    <% end %>
+                    </ul>
                 </div>
                 <div class="buttonContainer">
                     <form action="/pizzas/<%= pizza.id %>/customize" method="get">

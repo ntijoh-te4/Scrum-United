@@ -1,6 +1,9 @@
 <header id="topbar">
+    <form action="/pizzas/login" method="get">
+        <button type="submit"> Log in </button>
+    </form>
     <img src="/uploads/tonys-pizza-logo.svg" id="logo_img">
-    <a><img src="/uploads/tonys-pizza-basket.svg" id="basket_img"></a>
+    <a href="/cart"><img src="/uploads/tonys-pizza-basket.svg" id="basket_img"></a>
 </header>
 <% # inspect(pizzas) %>
 <main>
@@ -12,11 +15,9 @@
             <div class="pizzaInfo">
                 <h3><%= pizza.name %></h3>
                 <div class="ingContainer">
-                    <ul>
                     <%= for topping <- pizza.toppings do %>
-                        <li><%= topping %></li>
+                        <%= topping %><br>
                     <% end %>
-                    </ul>
                 </div>
                 <div class="buttonContainer">
                     <form action="/pizzas/<%= pizza.id %>/customize" method="get">

@@ -1,5 +1,7 @@
 defmodule Pluggy.CookieController do
 
+  alias Pluggy.Cookie
+
   def get(conn) when conn.cookies == %{} do
     cookie = generate()
     %{conn | cookies: %{"pizza_cookie" => cookie}, resp_headers: [{"Set-Cookie", "pizza_cookie=#{cookie}"}]}
@@ -7,8 +9,8 @@ defmodule Pluggy.CookieController do
   end
 
   def get(conn) do
-    session = retrieve_cookie(conn)
-    id = Postgrex.query!(DB, "SELECT id FROM sessions WHERE session = $1", [session]).rows
+    cookie = retrieve_cookie(conn)
+    id = Cookie.get_session_id(cookie)
     |> smth(conn)
     {conn, id}
   end
@@ -16,8 +18,8 @@ defmodule Pluggy.CookieController do
   def retrieve_cookie(conn), do: conn.cookies["pizza_cookie"]
 
   def smth([], conn) do
-    session = retrieve_cookie(conn)
-    Postgrex.query!(DB, "INSERT INTO sessions (session) VALUES ($1)", [session])
+    cookie = retrieve_cookie(conn)
+    Cookie.save_cookie(cookie)
     {_conn, id} = get(conn)
     id
   end

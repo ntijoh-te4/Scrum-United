@@ -7,8 +7,8 @@ defmodule Pluggy.CartController do
   import Plug.Conn, only: [send_resp: 3]
 
   def show(conn) do
-    # IO.inspect(conn)
-    # {conn, _id} = CookieController.get(conn)
+    # {conn, id} = CookieController.get(conn)
+
     send_resp(conn, 200, render("cart/page"))
   end
 
@@ -16,10 +16,7 @@ defmodule Pluggy.CartController do
 
     pizza_id = pizza_id |> String.to_integer()
 
-    IO.inspect(conn)
     {conn, user_id} = CookieController.get(conn)
-    #IO.inspect(user_id)
-    IO.inspect(conn)
 
     name = PizzaController.get_name(pizza_id)
     ingredients = PizzaController.get_ingredients(pizza_id)

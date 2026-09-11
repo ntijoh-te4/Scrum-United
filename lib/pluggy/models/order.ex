@@ -1,12 +1,12 @@
 defmodule Pluggy.Order do
-  defstruct(id: nil, name: "", date: "", toppings: "")
+  defstruct(id: nil, name: "", group: "", date: "", toppings: "")
 
   alias Pluggy.Order
   def add_ingredient(id, ingredient), do: Postgrex.query!(DB, "INSERT INTO order_rel (order_id, ingredient_id) VALUES ($1, $2)", [id, ingredient])
 
   def all() do
     Postgrex.query!(DB, "
-                        SELECT orders.id, orders.order_name, orders.date, array_agg(toppings.name)
+                        SELECT orders.id, orders.order_name, orders.group_id, orders.date, array_agg(toppings.name)
                         FROM orders
                         JOIN order_rel
                         ON orders.id = order_rel.order_id
@@ -19,6 +19,6 @@ defmodule Pluggy.Order do
 
 
   def to_struct_list(rows) do
-    for [id, name, date, toppings] <- rows, do: %Order{id: id, name: name, date: date, toppings: toppings}
+    for [id, name, group, date, toppings] <- rows, do: %Order{id: id, name: name, group: group, date: date, toppings: toppings}
   end
 end

@@ -17,7 +17,7 @@ defmodule Pluggy.OrderController do
     |> Enum.map(&Order.add_ingredient(id, &1))
   end
 
-  def get_all_orders(conn), do: send_resp(conn, 200, render("pizzas/admin", orders: Order.all()))
+def get_all_orders(conn), do: send_resp(conn, 200, render("pizzas/admin", groups: Enum.group_by(Order.all(), & &1.group)))
 
 
 

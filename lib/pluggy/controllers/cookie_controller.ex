@@ -4,7 +4,8 @@ defmodule Pluggy.CookieController do
 
   def get(conn) when conn.cookies == %{} do
     cookie = generate()
-    %{conn | cookies: %{"pizza_cookie" => cookie}, resp_headers: [{"Set-Cookie", "pizza_cookie=#{cookie}"}]}
+    headers = [{"Set-Cookie", "pizza_cookie=#{cookie}; Path=/"} | conn.resp_headers ]
+    %{conn | cookies: %{"pizza_cookie" => cookie}, resp_headers: headers }
     |> get
   end
 

@@ -17,7 +17,17 @@ defmodule Pluggy.Pizza do
 
   end
   def get(id) do
-    Postgrex.query!(DB, "SELECT * FROM pizzas WHERE id = $1 LIMIT 1", [String.to_integer(id)]).rows
+    Postgrex.query!(DB, "
+                        SELECT pizzas.id, pizzas.name, pizzas.img, array_agg(toppings.name)
+                        FROM pizzas
+                        JOIN pizza_rel
+                        ON pizzas.id = pizza_rel.pizza_id
+                        JOIN toppings
+                        ON pizza_rel.topp_id = toppings.id
+                        WHERE pizzas.id = $1
+                        GROUP BY pizzas.id, pizzas.name
+                        LIMIT 1",
+                        [String.to_integer(id)]).rows
     |> to_struct
   end
 
@@ -40,8 +50,8 @@ defmodule Pluggy.Pizza do
     Postgrex.query!(DB, "DELETE FROM pizzas WHERE id = $1", [String.to_integer(id)])
   end
 
-  def to_struct([[id, name, img]]) do
-    %Pizza{id: id, name: name, img: img}
+  def to_struct([[id, name, img, toppings]]) do
+    %Pizza{id: id, name: name, img: img, toppings: toppings}
   end
   def to_struct_list(rows) do
     for [id, name, img, toppings] <- rows, do: %Pizza{id: id, name: name, img: img, toppings: toppings}

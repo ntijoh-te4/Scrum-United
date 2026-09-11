@@ -1,6 +1,5 @@
 <header id="topbar">
     <img src="/uploads/tonys-pizza-logo.svg" id="logo_img">
-
     <a><img src="/uploads/tonys-pizza-basket.svg" id="basket_img"></a>
 </header>
 <% # inspect(pizzas) %>

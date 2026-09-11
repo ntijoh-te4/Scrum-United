@@ -11,19 +11,19 @@ defmodule Pluggy.CookieController do
   def get(conn) do
     cookie = retrieve_cookie(conn)
     id = Cookie.get_session_id(cookie)
-    |> smth(conn)
+    |> get_or_create(conn)
     {conn, id}
   end
 
   def retrieve_cookie(conn), do: conn.cookies["pizza_cookie"]
 
-  def smth([], conn) do
+  def get_or_create([], conn) do
     cookie = retrieve_cookie(conn)
     Cookie.save_cookie(cookie)
     {_conn, id} = get(conn)
     id
   end
-  def smth([[id]], _conn), do: id
+  def get_or_create([[id]], _conn), do: id
 
   def generate(), do: (for _ <- 1..25, into: "", do: <<Enum.random(~c"0123456789abcdef")>>)
 end

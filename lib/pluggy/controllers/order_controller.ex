@@ -12,9 +12,6 @@ defmodule Pluggy.OrderController do
 
     ingredients |> Enum.map(&String.to_integer/1)
     |> Enum.map(&Order.add_ingredient(id, &1))
-
-
-    IO.inspect(id)
   end
 
   def get_date do

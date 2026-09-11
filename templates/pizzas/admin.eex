@@ -3,5 +3,5 @@
     <button type="submit">Log Out</button>
 </form>
 
-
+<%= inspect(orders) %>
 # insert code to show orders and to check them off

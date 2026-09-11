@@ -1,5 +1,8 @@
 defmodule Pluggy.OrderController do
   alias Pluggy.Order
+  import Pluggy.Template, only: [render: 2]
+  import Plug.Conn, only: [send_resp: 3]
+
   def new(name, ingredients, group_id, is_ordered) do
     name = name |> List.flatten() |> hd()
 
@@ -13,6 +16,10 @@ defmodule Pluggy.OrderController do
     ingredients |> Enum.map(&String.to_integer/1)
     |> Enum.map(&Order.add_ingredient(id, &1))
   end
+
+  def get_all_orders(conn), do: send_resp(conn, 200, render("pizzas/admin", orders: Order.all()))
+
+
 
   def get_date do
     d = DateTime.now!("Etc/UTC")

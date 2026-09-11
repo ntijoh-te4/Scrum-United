@@ -56,7 +56,7 @@ defmodule Mix.Tasks.Seed do
     )
     Postgrex.query!(
       DB,
-      "CREATE TABLE temp_rel (id SERIAL PRIMARY KEY, order_id INTEGER NOT NULL, ingredient_id INTEGER NOT NULL)",
+      "CREATE TABLE order_rel (id SERIAL PRIMARY KEY, order_id INTEGER NOT NULL, ingredient_id INTEGER NOT NULL)",
       []
     )
 

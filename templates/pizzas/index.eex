@@ -1,23 +1,32 @@
-<div id="topbar">
+<header id="topbar">
     <img src="/uploads/tonys-pizza-logo.svg" id="logo_img">
-
     <a><img src="/uploads/tonys-pizza-basket.svg" id="basket_img"></a>
-</div>
-<div>
+</header>
+<% # inspect(pizzas) %>
+<main>
     <%= for pizza <- pizzas do %>
-        <%= pizza.name %>
-        <div>
-            <img src="/uploads/<%= pizza.img %>" class="pizza_img">
-            <ul>
-            <li></li>
-
-            <form action="/pizzas/<%= pizza.id %>/customize" method="get">
-                <button type="submit">Anpassa</button>
-            </form>
-            <form action="/cart/add/<%= pizza.id %>" method="POST">
-                <button type="submit">Lägg till i varukorg</button>
-            </form>
-            </ul>
+        <div class="pizza">
+            <div class="pizzaImage">
+                <img src="/uploads/<%= pizza.img %>" class="pizza_img">
+            </div>
+            <div class="pizzaInfo">
+                <h3><%= pizza.name %></h3>
+                <div class="ingContainer">
+                    <ul>
+                    <%= for topping <- pizza.toppings do %>
+                        <li><%= topping %></li>
+                    <% end %>
+                    </ul>
+                </div>
+                <div class="buttonContainer">
+                    <form action="/pizzas/<%= pizza.id %>/customize" method="get">
+                        <button class="anpassa">Anpassa</button>
+                    </form>
+                    <form action="/cart/add/<%= pizza.id %>" method="POST">
+                        <button class="köp" type="submit">Lägg till i varukorg</button>
+                    </form>
+                </div>
+            </div>
         </div>
     <% end %>
-</div>
+</main>

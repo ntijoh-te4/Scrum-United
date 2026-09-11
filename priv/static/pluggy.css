@@ -4,15 +4,66 @@ body {
 div#topbar {
 	display: block;
 }
-img.pizza_img{
-	width: 25%;
-	height: auto;
-}
 #logo_img {
 	margin-left: 15%;
 	width: 70%;
 }
 #basket_img {
-width: 10%;
-
+	width: 10%;
+	padding: 1rem;
+	padding-bottom: 5rem;
+}
+#basket_img:hover{
+	transition: 0.25s;
+	scale: 1.15;
+}
+main{
+	display: flex; 
+	flex-wrap:wrap;
+}
+.pizza{
+	width:35%;
+	margin: auto;
+	border-bottom: dotted black 3px;
+	display:flex;
+}
+.pizzaImage{
+	flex:1;
+}
+h3{
+	text-align: center;
+	border-bottom: dotted black 3px;
+	padding-bottom:0.25rem
+}
+.pizzaInfo{
+	flex:1;
+	padding: 1rem;
+}
+.buttonContainer{
+	width: 50%;
+	display:flex;
+}
+.ingContainer{
+	padding-bottom:0.5rem;
+}
+button{
+	border:none;
+	border-radius: 0.3rem;
+	margin-left:0.25rem;
+	padding:0.15rem;
+}
+button:hover{
+	background-color: #ccaaaa;
+}
+.anpassa{
+	background-color: #ddddaa;
+	flex: 1
+}
+.köp{
+	background-color: #339933;
+	flex: 1
+}
+img.pizza_img{
+	width: 100%;
+	height: auto;
 }

@@ -17,7 +17,7 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "DROP TABLE IF EXISTS groups", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS orders", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS pizza_rel CASCADE", [])
-    Postgrex.query!(DB, "DROP TABLE IF EXISTS temp_rel CASCADE", [])
+    Postgrex.query!(DB, "DROP TABLE IF EXISTS order_rel CASCADE", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS users", [])
     Postgrex.query!(DB, "DROP TABLE IF EXISTS sessions", [])
   end

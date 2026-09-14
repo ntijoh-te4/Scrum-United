@@ -2,18 +2,20 @@ defmodule Pluggy.CookieController do
 
   alias Pluggy.Cookie
 
-  def get(conn) when conn.cookies == %{} do
-    cookie = generate()
-    headers = [{"Set-Cookie", "pizza_cookie=#{cookie}; Path=/"} | conn.resp_headers ]
-    %{conn | cookies: %{"pizza_cookie" => cookie}, resp_headers: headers }
-    |> get
-  end
-
-  def get(conn) do
+  def get(%{cookies: %{"pizza_cookie" => _cookie}} = conn) do
     cookie = retrieve_cookie(conn)
+    
     id = Cookie.get_session_id(cookie)
     |> get_or_create(conn)
     {conn, id}
+  end
+
+  def get(conn) do
+    cookie = generate()
+    headers = [{"Set-Cookie", "pizza_cookie=#{cookie}; Path=/"} | conn.resp_headers ]
+
+    %{conn | cookies: %{"pizza_cookie" => cookie}, resp_headers: headers }
+    |> get
   end
 
   def retrieve_cookie(conn), do: conn.cookies["pizza_cookie"]

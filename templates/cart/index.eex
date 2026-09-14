@@ -1,5 +1,9 @@
 <div id="cart_wrapper">
 
+    <a id="home_button" href="/pizzas">
+        <p>Hem</p>
+    </a>
+
     <header>
         <h1> Kundvagn </h1>
     </header>

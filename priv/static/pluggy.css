@@ -84,6 +84,7 @@ img.pizza_img{
 #cart_wrapper header {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
 #cart_wrapper main {
@@ -127,6 +128,24 @@ img.pizza_img{
 
 .cart_buttons > * {
 	margin-bottom: 0.5rem;
+}
+
+#home_button {
+	width: 100%;
+	text-decoration: none;
+	color: black;
+}
+
+#home_button > p {
+	margin: 0;
+	padding: 0.1rem 0.3rem;
+	border-radius: 0.3rem;
+	width: fit-content;
+	background-color: #e9e9ed;
+}
+
+#home_button > p:hover {
+	background-color: #ccaaaa;
 }
 
 

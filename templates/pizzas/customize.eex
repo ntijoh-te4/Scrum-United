@@ -1,3 +1,16 @@
-<%= pizza.id %>
-<%= pizza.name %>
-<%= pizza.toppings %>
+    <%= pizza.name %>
+
+
+     <form action="/cart/add/custom/<%=pizza.id%>" method="POST">
+        <%= for [id, name] <- ingredients do %>
+        
+            <% topping = name in pizza.toppings %>
+            <%= if topping do %>
+                <input type="checkbox" id=<%=id%> name=<%=id%> checked><%=name%></input>
+            <%else %>
+                <input type="checkbox" id=<%=id%>  name=<%=id%>><%=name%></input>
+            <%end %>        
+        <%end%>
+        <br>
+        <input value="submit" type="submit"></>
+    </form>

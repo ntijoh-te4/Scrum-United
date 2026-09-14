@@ -1,8 +1,9 @@
 body {
 	background-color: peachpuff;
 }
-div#topbar {
+header {
 	display: block;
+	
 }
 #logo_img {
 	margin-left: 15%;
@@ -40,7 +41,7 @@ h3{
 	padding: 1rem;
 }
 .buttonContainer{
-	width: 50%;
+	width: 70%;
 	display:flex;
 }
 .ingContainer{
@@ -51,6 +52,7 @@ button{
 	border-radius: 0.3rem;
 	margin-left:0.25rem;
 	padding:0.15rem;
+	cursor: pointer;
 }
 button:hover{
 	background-color: #ccaaaa;

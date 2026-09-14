@@ -6,8 +6,7 @@ defmodule Pluggy.Router do
   alias Pluggy.UserController
   alias Pluggy.PizzaController
   alias Pluggy.CartController
-  #alias Pluggy.IndexController
-  alias Pluggy.AdminController
+  alias Pluggy.OrderController
 
   plug(Plug.Static, at: "/", from: :pluggy)
   plug(:put_secret_key_base)
@@ -28,7 +27,6 @@ defmodule Pluggy.Router do
 
   # Sessions are demonstrated by the login form, but no route checks for a logged-in user:
   # anyone can create, edit and destroy fruits.
-  #get("/", do: IndexController.index(conn))
   get("/fruits", do: FruitController.index(conn))
   get("/fruits/new", do: FruitController.new(conn))
   get("/fruits/:id", do: FruitController.show(conn, id))
@@ -45,7 +43,7 @@ defmodule Pluggy.Router do
 
   get("/pizzas", do: PizzaController.index(conn))
   get("/pizzas/login", do: UserController.show(conn))
-  get("/pizzas/admin", do: AdminController.show(conn))
+  get("/pizzas/admin", do: OrderController.get_all_orders(conn))
   get("/pizzas/:id/customize", do: PizzaController.customize(conn, id))
 
   get("/cart", do: CartController.show(conn))

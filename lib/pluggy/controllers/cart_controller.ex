@@ -27,4 +27,25 @@ defmodule Pluggy.CartController do
 
   end
 
+  def remove(conn, id) do
+
+    Postgrex.query!(DB, "DELETE FROM orders WHERE id = $1", [String.to_integer(id)])
+
+    Redirect.redirect(conn, "/cart")
+
+  end
+
+  def submit(conn) do
+
+    {conn, user_id} = CookieController.get(conn)
+
+    order = "ordered"
+
+    Postgrex.query!(DB, "UPDATE orders SET is_ordered = $1 WHERE group_id = $2", [order, user_id])
+
+    Redirect.redirect(conn, "/pizzas")
+
+  end
+
+
 end

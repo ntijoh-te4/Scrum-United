@@ -1,7 +1,19 @@
 
-<form action="/users/logout" method="post">
-    <button type="submit">Log Out</button>
-</form>
+<div>
+    <form action="/users/logout" method="post">
+        <button type="submit">Log Out</button>
+    </form>
+</div>
+<%= inspect(groups) %>
+<main>
+    <%= for {group, orders} <- groups do %>
+        <div class="horizontal-orders">
 
-<%= inspect(orders) %>
+            <%= for order <- orders do %>
+                <p><%= order.name %></p>
+            <% end %>
+
+        </div>
+    <% end %>
+</main>
 # insert code to show orders and to check them off

@@ -1,28 +1,29 @@
-<%= for item <- cart do %>
-    <h2> <%= item.pizza %> </h2>
-    <h2> <%= item.toppings %> </h2>
-<% end %>
+<div id="cart_wrapper">
 
-<main>
-    <%= for item <- cart do %>
-        <div class="pizza">
+    <header>
+        <h1> Kundvagn </h1>
+    </header>
 
-            <div class="pizzaInfo">
-                <h3><%= item.pizza %></h3>
-                <div class="ingContainer">
+    <main>
+        <%= for item <- cart do %>
+            <div class="cart_item">
+                <h2><%= item.pizza %></h2>
+                <div class="cart_toppings">
                     <%= for topping <- item.toppings do %>
                         <%= topping %><br>
                     <% end %>
                 </div>
-                <div class="buttonContainer">
+
+                <div class="cart_buttons">
                     <form action="" method="get">
                         <button class="anpassa">Anpassa</button>
                     </form>
                     <form action="" method="POST">
-                        <button class="köp" type="submit">Ta bort</button>
+                        <button class="ta_bort" type="submit">Ta bort</button>
                     </form>
                 </div>
             </div>
-        </div>
-    <% end %>
-</main>
+        <% end %>
+    </main>
+
+</div>

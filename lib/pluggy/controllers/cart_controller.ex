@@ -2,7 +2,6 @@ defmodule Pluggy.CartController do
   alias Pluggy.CookieController
   alias Pluggy.OrderController
   alias Pluggy.PizzaController
-  alias Pluggy.Ingredients
   alias Pluggy.Redirect
   alias Pluggy.Cart
   import Pluggy.Template, only: [render: 2]

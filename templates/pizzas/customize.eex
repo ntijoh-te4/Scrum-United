@@ -1,11 +1,11 @@
-
 <div class="customizeBox">
     <div class="left-half">
         <h1><%=pizza.name%></h1>
         <img class="customizeImg" src="/uploads/<%=pizza.img%>">
     </div>
+
     <div class="right-half">
-        <form  class="formBox" action="/cart/add/custom/<%=pizza.id%>" method="POST">
+        <form class="formBox" action="/cart/add/custom/<%=pizza.id%>" method="POST">
             <br>
             <%= for [id, name] <- ingredients do %>
             
@@ -14,15 +14,14 @@
                     <input class="item" type="checkbox" id=<%=id%> name=<%=id%> checked></input>
                     <p class="checktext"><%=name%></p>
                 <%else %>
-                    <input class="item" type="checkbox" id=<%=id%>  name=<%=id%></input>
+                    <input class="item" type="checkbox" id=<%=id%> name=<%=id%>></input>
                     <p class="checktext"><%=name%></p>
                 <%end %>        
             <%end%>
             <br>
             <input class="submit" value="submit" type="submit">
-            </div>
         </form>
-
+    </div>
 </div>
 
 <div>

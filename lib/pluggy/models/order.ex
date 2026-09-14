@@ -21,4 +21,20 @@ defmodule Pluggy.Order do
   def to_struct_list(rows) do
     for [id, name, group, date, toppings] <- rows, do: %Order{id: id, name: name, group: group, date: date, toppings: toppings}
   end
+
+  def get_date do
+    d = DateTime.now!("Etc/UTC")
+    "#{d.year}-#{d.month}-#{d.day} #{d.hour+2}:#{d.minute}"
+  end
+
+  def new_get_id(name, group_id, order_status) do
+    query = """
+    INSERT INTO orders (order_name, group_id, date, is_ordered)
+    VALUES ($1, $2, $3, $4)
+    RETURNING id
+    """
+
+    [[id]] = Postgrex.query!(DB, query, [name, group_id, get_date(), order_status]).rows
+    id
+  end
 end

@@ -2,3 +2,27 @@
     <h2> <%= item.pizza %> </h2>
     <h2> <%= item.toppings %> </h2>
 <% end %>
+
+<main>
+    <%= for item <- cart do %>
+        <div class="pizza">
+
+            <div class="pizzaInfo">
+                <h3><%= item.pizza %></h3>
+                <div class="ingContainer">
+                    <%= for topping <- item.toppings do %>
+                        <%= topping %><br>
+                    <% end %>
+                </div>
+                <div class="buttonContainer">
+                    <form action="" method="get">
+                        <button class="anpassa">Anpassa</button>
+                    </form>
+                    <form action="" method="POST">
+                        <button class="köp" type="submit">Ta bort</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</main>

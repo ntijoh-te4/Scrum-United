@@ -3,13 +3,14 @@ defmodule Pluggy.CartController do
   alias Pluggy.OrderController
   alias Pluggy.PizzaController
   alias Pluggy.Redirect
-  import Pluggy.Template, only: [render: 1]
+  alias Pluggy.Cart
+  import Pluggy.Template, only: [render: 2]
   import Plug.Conn, only: [send_resp: 3]
 
   def show(conn) do
-    # {conn, id} = CookieController.get(conn)
-
-    send_resp(conn, 200, render("cart/page"))
+    {conn, id} = CookieController.get(conn)
+    cart = Cart.get_cart(id)
+    send_resp(conn, 200, render("cart/index", cart: cart))
   end
 
   def new(conn, pizza_id) do

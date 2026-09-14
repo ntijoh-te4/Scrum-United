@@ -1,0 +1,4 @@
+<%= for item <- cart do %>
+    <h2> <%= item.pizza %> </h2>
+    <h2> <%= item.toppings %> </h2>
+<% end %>

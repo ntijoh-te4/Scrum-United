@@ -4,7 +4,7 @@ defmodule Pluggy.CookieController do
 
   def get(%{cookies: %{"pizza_cookie" => _cookie}} = conn) do
     cookie = retrieve_cookie(conn)
-    
+
     id = Cookie.get_session_id(cookie)
     |> get_or_create(conn)
     {conn, id}
@@ -29,4 +29,15 @@ defmodule Pluggy.CookieController do
   def get_or_create([[id]], _conn), do: id
 
   def generate(), do: (for _ <- 1..25, into: "", do: <<Enum.random(~c"0123456789abcdef")>>)
+
+  def delete(conn) do
+
+    cookie = retrieve_cookie(conn)
+    Cookie.clear_cookie(cookie)
+
+    headers = [{"Set-Cookie", "pizza_cookie=; Path=/; Max-Age=0"} | conn.resp_headers]
+
+    %{conn | cookies: Map.delete(conn.cookies, "pizza_cookie"), resp_headers: headers}
+  end
+
 end

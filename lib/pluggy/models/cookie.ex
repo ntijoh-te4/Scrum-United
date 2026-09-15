@@ -6,4 +6,9 @@ defmodule Pluggy.Cookie do
   def save_cookie(cookie) do
     Postgrex.query!(DB, "INSERT INTO sessions (session) VALUES ($1)", [cookie])
   end
+
+  def clear_cookie(cookie) do
+    Postgrex.query!(DB, "DELETE FROM sessions WHERE session = $1", [cookie])
+  end
+
 end

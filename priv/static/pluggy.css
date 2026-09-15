@@ -1,5 +1,7 @@
 body {
-	background-color: peachpuff;
+	background-color: white;
+	font-family: "Roboto", sans-serif;
+	font-weight: 200;
 }
 header {
 	display: block;
@@ -21,20 +23,26 @@ header {
 main{
 	display: flex; 
 	flex-wrap:wrap;
+	width: 70%;
+	margin: auto;
 }
 .pizza{
-	width:35%;
+	width: 40%;
 	margin: auto;
-	border-bottom: dotted black 3px;
 	display:flex;
 }
 .pizzaImage{
 	flex:1;
 }
 h3{
-	text-align: center;
-	border-bottom: dotted black 3px;
-	padding-bottom:0.25rem
+	text-align: left;
+	padding-bottom:0.25rem;
+	margin-bottom: 0;
+	font-weight: 400;
+}
+p{
+	margin: 0.2rem;
+	color: #b0b0b0;
 }
 .pizzaInfo{
 	flex:1;
@@ -51,18 +59,18 @@ button{
 	border:none;
 	border-radius: 0.3rem;
 	margin-left:0.25rem;
-	padding:0.15rem;
+	padding:0.15rem 0.6rem;
 	cursor: pointer;
 }
 button:hover{
 	background-color: #ccaaaa;
 }
 .anpassa{
-	background-color: #ddddaa;
+	background-color: #ffecc4;
 	flex: 1
 }
 .köp{
-	background-color: #339933;
+	background-color: #4aac42;
 	flex: 1
 }
 .ta_bort{
@@ -137,6 +145,7 @@ img.pizza_img{
 }
 
 #home_button > p {
+	color: black;
 	margin: 0;
 	padding: 0.1rem 0.3rem;
 	border-radius: 0.3rem;

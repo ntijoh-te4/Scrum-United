@@ -16,7 +16,7 @@
                 <h3><%= pizza.name %></h3>
                 <div class="ingContainer">
                     <%= for topping <- pizza.toppings do %>
-                        <%= topping %><br>
+                        <p><%= topping %></p>
                     <% end %>
                 </div>
                 <div class="buttonContainer">
@@ -24,7 +24,7 @@
                         <button class="anpassa">Anpassa</button>
                     </form>
                     <form action="/cart/add/<%= pizza.id %>" method="POST">
-                        <button class="köp" type="submit">Lägg till i varukorg</button>
+                        <button class="köp" type="submit">Köp</button>
                     </form>
                 </div>
             </div>

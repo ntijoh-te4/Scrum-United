@@ -11,4 +11,8 @@ defmodule Pluggy.Cookie do
     Postgrex.query!(DB, "DELETE FROM sessions WHERE session = $1", [cookie])
   end
 
+  def assign_admin(session_id) do
+    admin = "admin"
+    Postgrex.query!(DB, "UPDATE sessions SET is_admin = $1 WHERE id = $2", [admin, session_id])
+  end
 end

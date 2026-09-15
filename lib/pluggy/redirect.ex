@@ -4,4 +4,8 @@ defmodule Pluggy.Redirect do
   def redirect(conn, url) do
     Plug.Conn.put_resp_header(conn, "location", url) |> send_resp(303, "")
   end
+
+  def forbidden(conn, url) do
+    Plug.Conn.put_resp_header(conn, "location", url) |> send_resp(403, "")
+  end
 end

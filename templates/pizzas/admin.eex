@@ -4,16 +4,31 @@
         <button type="submit">Log Out</button>
     </form>
 </div>
-<%= inspect(groups) %>
 <main>
     <%= for {group, orders} <- groups do %>
         <div class="horizontal-orders">
+            <% [first_order | _] = orders %>
+            <h3><%= first_order.is_ordered %></h3>
+            <h1> <%= group %> </h1>
 
             <%= for order <- orders do %>
-                <p><%= order.name %></p>
-            <% end %>
 
+                <h3><%= order.name %></h3><p>
+                <%= for topping <- order.toppings do %>
+                    <%= topping %><br>
+                <% end %>
+                <p>
+
+            <% end %>
+            <div class="">
+            <form action="/pizzas/admin/ready/<%= group %>" method="post">
+                <button type="submit">Order ready!</button>
+            </form>
+            <p>
+            <form action="/pizzas/admin/complete/<%= group %>" method="post">
+                <button type="submit">Order has been picked up</button>
+            </form>
+            </div>
         </div>
     <% end %>
 </main>
-# insert code to show orders and to check them off

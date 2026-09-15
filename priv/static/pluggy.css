@@ -21,6 +21,7 @@ header {
 main{
 	display: flex; 
 	flex-wrap:wrap;
+	align-items: flex-start;
 }
 .pizza{
 	width:35%;
@@ -68,4 +69,10 @@ button:hover{
 img.pizza_img{
 	width: 100%;
 	height: auto;
+}
+.horizontal-orders{
+	margin:1rem;
+	padding: 1rem;
+	border: dotted black 3px;
+	align-self: flex-start;
 }

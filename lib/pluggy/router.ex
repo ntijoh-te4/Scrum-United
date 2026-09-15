@@ -52,6 +52,9 @@ defmodule Pluggy.Router do
   post("/cart/remove/:order", do: CartController.remove(conn, order))
   post("/cart/submit", do: CartController.submit(conn))
 
+  post("/pizzas/admin/ready/:group", do: OrderController.ready_order(conn, group))
+   post("/pizzas/admin/complete/:group", do: OrderController.complete_order(conn, group))
+
 
   # get("/pizzas/new", do: FruitController.new(conn))
   # get("/pizzas/:id", do: FruitController.show(conn, id))

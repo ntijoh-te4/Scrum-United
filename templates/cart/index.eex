@@ -1,15 +1,26 @@
-<%= for item <- cart do %>
-    <h2> <%= item.pizza %> </h2>
+<main>
+    <%= for item <- cart do %>
+        <div class="pizza">
 
-    <%= for topping <- item.toppings  do %>
-        <%= topping %>
+            <div class="pizzaInfo">
+                <h3><%= item.pizza %></h3>
+                <div class="ingContainer">
+                    <%= for topping <- item.toppings do %>
+                        <%= topping %><br>
+                    <% end %>
+                </div>
+                <div class="buttonContainer">
+                    <form action="" method="get">
+                        <button class="anpassa">Anpassa</button>
+                    </form>
+                    <form method="POST" action="/cart/remove/<%= item.order %>">
+                        <button class="remove" type="submit"> Remove </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     <% end %>
-
-    <form method="POST" action="/cart/remove/<%= item.order %>">
-        <button class="remove" type="submit"> Remove </button>
-    </form>
-
-<% end %>
+</main>
 
 <p>
 

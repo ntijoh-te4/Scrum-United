@@ -39,9 +39,11 @@ defmodule Pluggy.CartController do
 
     {conn, user_id} = CookieController.get(conn)
 
-    order = "ordered"
+    order = "Ordered"
 
     Postgrex.query!(DB, "UPDATE orders SET is_ordered = $1 WHERE group_id = $2", [order, user_id])
+
+    conn = CookieController.delete(conn)
 
     Redirect.redirect(conn, "/pizzas")
 

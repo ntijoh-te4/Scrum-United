@@ -1,3 +1,4 @@
+<div id="cart_wrapper">
     <a id="home_button" href="/pizzas">
         <p>Hem</p>
     </a>
@@ -21,15 +22,13 @@
                         <button class="anpassa">Anpassa</button>
                     </form>
                     <form method="POST" action="/cart/remove/<%= item.order %>">
-                        <button class="remove" type="submit"> Remove </button>
+                        <button class="ta_bort" type="submit"> Ta bort </button>
                     </form>
                 </div>
             </div>
-    <% end %>
-</main>
-
-<p>
-
-<form method="POST" action="/cart/submit">
-    <button class="submit" type="submit"> Submit </button>
-</form>
+        <% end %>
+    </main>
+    <form method="POST" action="/cart/submit">
+        <button class="submit" type="submit"> Submit </button>
+    </form>
+</div>

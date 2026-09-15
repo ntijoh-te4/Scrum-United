@@ -68,7 +68,7 @@ defmodule Mix.Tasks.Seed do
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE sessions (id SERIAL PRIMARY KEY, session TEXT NOT NULL)",
+      "CREATE TABLE sessions (id SERIAL PRIMARY KEY, session TEXT NOT NULL, is_admin TEXT)",
       []
     )
 

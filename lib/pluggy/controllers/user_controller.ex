@@ -1,6 +1,8 @@
 defmodule Pluggy.UserController do
+  alias Pluggy.CookieController
   import Pluggy.Template, only: [render: 2]
   import Plug.Conn, only: [send_resp: 3]
+
 
 
   def show(conn) do
@@ -32,9 +34,13 @@ defmodule Pluggy.UserController do
 
         # make sure password is correct
         if Bcrypt.verify_pass(password, password_hash) do
-          Plug.Conn.put_session(conn, :user_id, id)
+
+          {conn, session_id} = CookieController.get(conn)
+          CookieController.assign_admin(session_id)
+
+          conn = Plug.Conn.put_session(conn, :user_id, id)
           # skicka vidare modifierad conn
-          |> redirect("/pizzas/admin") #om korrekt gå vidare till admin
+          redirect(conn, "/pizzas/admin") #om korrekt gå vidare till admin
         else
           redirect(conn, "/pizzas/login") #annars stanna kvar
         end

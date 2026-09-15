@@ -40,4 +40,5 @@ defmodule Pluggy.CookieController do
     %{conn | cookies: Map.delete(conn.cookies, "pizza_cookie"), resp_headers: headers}
   end
 
+  def assign_admin(session_id), do: Cookie.assign_admin(session_id)
 end

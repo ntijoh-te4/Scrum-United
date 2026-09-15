@@ -1,6 +1,7 @@
 defmodule Pluggy.OrderController do
-  alias Pluggy.Order
   alias Pluggy.Redirect
+  alias Pluggy.Order
+  alias Pluggy.CookieController
   import Pluggy.Template, only: [render: 2]
   import Plug.Conn, only: [send_resp: 3]
 
@@ -13,7 +14,19 @@ defmodule Pluggy.OrderController do
     |> Enum.map(&Order.add_ingredient(id, &1))
   end
 
-  def get_all_orders(conn), do: send_resp(conn, 200, render("pizzas/admin", groups: Enum.group_by(Order.all(), & &1.group)))
+  def get_all_orders(conn) do
+
+    cookie = CookieController.retrieve_cookie(conn)
+    result = Postgrex.query!(DB, "SELECT is_admin FROM sessions WHERE session = $1 LIMIT 1", [cookie])
+
+    case result.rows do
+      [["admin"]] ->
+        send_resp(conn, 200, render("pizzas/admin", groups: Enum.group_by(Order.all(), & &1.group)))
+
+      _ ->
+        Redirect.forbidden(conn, "/pizzas/login")
+    end
+  end
 
   def ready_order(conn, group) do
 

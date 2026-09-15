@@ -12,7 +12,7 @@ defmodule Pluggy.Order do
                         ON orders.id = order_rel.order_id
                         JOIN toppings
                         ON order_rel.ingredient_id = toppings.id
-                        WHERE orders.is_ordered IN ('Ordered', 'Ready for pick-up', 'Delivered')
+                        WHERE orders.is_ordered IN ('Ordered', 'Ready for pick-up')
                         GROUP BY orders.id, orders.order_name
                         ").rows
     |> to_struct_list

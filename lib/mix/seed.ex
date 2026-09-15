@@ -33,7 +33,7 @@ defmodule Mix.Tasks.Seed do
 
     Postgrex.query!(
       DB,
-      "CREATE TABLE toppings (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL)",
+      "CREATE TABLE toppings (id SERIAL PRIMARY KEY, name TEXT NOT NULL)",
       []
     )
 

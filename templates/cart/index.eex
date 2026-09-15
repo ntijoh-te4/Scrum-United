@@ -1,15 +1,22 @@
-<main>
-    <%= for item <- cart do %>
-        <div class="pizza">
+    <a id="home_button" href="/pizzas">
+        <p>Hem</p>
+    </a>
 
-            <div class="pizzaInfo">
-                <h3><%= item.pizza %></h3>
-                <div class="ingContainer">
+    <header>
+        <h1> Kundvagn </h1>
+    </header>
+
+    <main>
+        <%= for item <- cart do %>
+            <div class="cart_item">
+                <h2><%= item.pizza %></h2>
+                <div class="cart_toppings">
                     <%= for topping <- item.toppings do %>
                         <%= topping %><br>
                     <% end %>
                 </div>
-                <div class="buttonContainer">
+
+                <div class="cart_buttons">
                     <form action="" method="get">
                         <button class="anpassa">Anpassa</button>
                     </form>
@@ -18,7 +25,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     <% end %>
 </main>
 

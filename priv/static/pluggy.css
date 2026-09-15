@@ -66,6 +66,10 @@ button:hover{
 	background-color: #339933;
 	flex: 1
 }
+.ta_bort{
+	background-color: #de5d5d;
+	flex: 1
+}
 img.pizza_img{
 	width: 100%;
 	height: auto;
@@ -75,4 +79,147 @@ img.pizza_img{
 	padding: 1rem;
 	border: dotted black 3px;
 	align-self: flex-start;
+
+
+#cart_wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#cart_wrapper header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#cart_wrapper main {
+	width: 60%;
+
+	display: grid; 
+	grid-template-columns: 50% 50%;
+}
+
+.cart_item {
+	margin: 1rem;
+	padding: 1rem;
+	border: 1px dotted;
+	border-radius: 1rem;
+
+	display: grid;
+	grid-template-areas:
+	"name buttons"
+	"toppings buttons";
+	grid-template-columns: auto auto;
+	grid-template-rows: 3rem auto;
+}
+
+.cart_item > h2 {
+	grid-area: name;
+	margin: 0;
+}
+
+.cart_toppings {
+	grid-area: toppings;
+}
+
+.cart_buttons {
+	grid-area: buttons;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
+.cart_buttons > * {
+	margin-bottom: 0.5rem;
+}
+
+#home_button {
+	width: 100%;
+	text-decoration: none;
+	color: black;
+}
+
+#home_button > p {
+	margin: 0;
+	padding: 0.1rem 0.3rem;
+	border-radius: 0.3rem;
+	width: fit-content;
+	background-color: #e9e9ed;
+}
+
+#home_button > p:hover {
+	background-color: #ccaaaa;
+}
+
+
+.left-half {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.right-half {
+  flex: 2;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.formBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 90%;
+}
+
+
+
+.item {
+	width: 5vw;
+}
+.checktext {
+	width: 7vw;
+	height: 1vh;
+}
+.center {
+	text-align: center;
+}
+.submit {
+	position: fixed;
+	right: 40%;
+	width: 100px;
+	top:70%;
+}
+
+.customizeBox {
+	position: fixed;
+	inset: 0px;
+	width: 12rem;
+	height: 5rem;
+	max-width: 85vw;
+	max-height: 100dvh;
+	margin: auto;
+	width: 12rem;
+	height: 5rem;
+  	display: flex;
+	width: 50vw;
+	height: 50vh;
+
+	border: black 4px dotted;
+
+}
+
+.customizeImg {
+	width: 90%;
+}
+.logocustom {
+	padding-bottom: 100%;
 }

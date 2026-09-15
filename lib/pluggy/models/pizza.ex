@@ -31,6 +31,10 @@ defmodule Pluggy.Pizza do
     |> to_struct
   end
 
+  def get_all_ingredients() do
+    Postgrex.query!(DB, "SELECT * FROM toppings")
+  end
+
   @spec update(binary(), nil | maybe_improper_list() | map()) :: Postgrex.Result.t()
   def update(id, params) do
     name = params["name"]

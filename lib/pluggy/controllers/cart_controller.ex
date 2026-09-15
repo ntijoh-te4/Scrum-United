@@ -14,17 +14,25 @@ defmodule Pluggy.CartController do
   end
 
   def new(conn, pizza_id) do
-
     pizza_id = pizza_id |> String.to_integer()
 
     {conn, user_id} = CookieController.get(conn)
 
     name = PizzaController.get_name(pizza_id)
     ingredients = PizzaController.get_ingredients(pizza_id)
-
     OrderController.new(name, ingredients, user_id, "pending")
     Redirect.redirect(conn, "/pizzas")
+  end
 
+  def new_custom(conn, pizza_id) do
+    pizza_id = pizza_id |> String.to_integer()
+    {conn, user_id} = CookieController.get(conn)
+    parameters = conn.params
+    ingredients_map = Map.delete(parameters, "pizza")
+    name = PizzaController.get_name(pizza_id)
+    inglist = Map.keys(ingredients_map)
+    OrderController.new(name,inglist, user_id, "pending")
+    Redirect.redirect(conn, "/pizzas")
   end
 
   def remove(conn, id) do

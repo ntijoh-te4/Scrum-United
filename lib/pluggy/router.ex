@@ -49,11 +49,13 @@ defmodule Pluggy.Router do
   get("/cart", do: CartController.show(conn))
 
   post("/cart/add/:pizza", do: CartController.new(conn, pizza))
+
   post("/cart/remove/:order", do: CartController.remove(conn, order))
   post("/cart/submit", do: CartController.submit(conn))
 
   post("/pizzas/admin/ready/:group", do: OrderController.ready_order(conn, group))
-   post("/pizzas/admin/complete/:group", do: OrderController.complete_order(conn, group))
+  post("/pizzas/admin/complete/:group", do: OrderController.complete_order(conn, group))
+  post("/cart/add/custom/:pizza", do: CartController.new_custom(conn, pizza))
 
 
   # get("/pizzas/new", do: FruitController.new(conn))
